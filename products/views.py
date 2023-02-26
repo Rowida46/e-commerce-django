@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseNotFound
 
 
 # https://dummyjson.com/products
@@ -30,5 +30,13 @@ def product_details(request, id):
     for prod in products:
         if (prod["id"] == id):
             return render(request, "products/product_view.html", context={"prod": prod})
-    return HttpResponse("<h1>product not found <h1/>")
+    msg = "we run out of stock, your product not found "
+    #return HttpResponseNotFound(<h1>product not found </h1>)
+    return render(request, "not_found.html", context= {"msg" : msg})
 
+
+def index(request):
+    return render(request, "index.html")
+
+def not_found(request, msg="now"):
+    return render(request, "not_found.html", context={"msg" : msg})

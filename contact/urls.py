@@ -20,6 +20,5 @@ from contact.views import *
 urlpatterns = [
     path('index', contactView, name='contactview'),
     path('aboutus', aboutUs, name="aboutUs"),
-    path("contactus", contactUs, name="contactUs"),
-
+    path("contactus", contactUs, name="contactUs")
 ]
