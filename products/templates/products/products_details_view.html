@@ -14,16 +14,19 @@
 
             <div class="card p-4">
                 <div class="content">
-                    <div class="card image">
+                    {% comment %} <div class="card image">
                         <img class="card-img-top" src={{prod.images}} alt="Card image cap" />
-                    </div>
+                    </div> {% endcomment %}
                     <div class="contentBx text-center">
                         <h3 clas="card-title">{{prod.title}}</h3>
-                        <p class="card-text">{{prod.price}}</p>
+                        <p class="card-text m-2">Product Price : {{prod.price}} $</p>
+                        <p class="card-text m-2"> Product Stock : {{prod.stock}}</p>
                     </div>
                     <div class="text-center">
                         <a class="btn btn-outline-secondary" href="{% url 'productDetails' prod.id %}">
                             View Product</a>
+                        <a class="btn btn-outline-danger m-2" href="{% url 'delete_product' prod.id %}">
+                                Delete Product</a>
                     </div>
                 </div>
             </div>
