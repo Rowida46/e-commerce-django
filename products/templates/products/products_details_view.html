@@ -6,6 +6,21 @@
 
 <div class="container">
     <h1> Your products landing page ... </h1>
+ 
+    <div class="form-outline">
+        <form action="{% url 'search_results' %}" method="get">
+
+        <input type="search" name="searchProd" class="form-control m-3" placeholder="Search by product by title" aria-label="Search" />
+        <i class="fas fa-search" aria-hidden="true"></i>
+    </form>
+    </div>
+    
+        <div class="row m-2  mt-3 title">
+            <h4 style="text-align:center"> <em>
+                total number of products :  {{counts}} </em></h4>
+        </div>
+    <a class="btn btn-outline-info m-2 text-center" href="{% url 'create_product' %}">
+        Create New Product</a>
 
     <div class="row">
         {% for prod in products %}
@@ -23,10 +38,12 @@
                         <p class="card-text m-2"> Product Stock : {{prod.stock}}</p>
                     </div>
                     <div class="text-center">
-                        <a class="btn btn-outline-secondary" href="{% url 'productDetails' prod.id %}">
+                        <a class="btn btn-outline-secondary" href="{{prod.get_spefic_product}}">
                             View Product</a>
-                        <a class="btn btn-outline-danger m-2" href="{% url 'delete_product' prod.id %}">
+                        <a class="btn btn-outline-danger m-2" href="{{prod.get_delete_url}}">
                                 Delete Product</a>
+                        <a class="btn btn-outline-info m-2" href="{{prod.get_edit_url}}">
+                                    Edit Product</a>
                     </div>
                 </div>
             </div>

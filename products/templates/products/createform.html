@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block 'title' %}create product  {% endblock %}
+
+{% block 'contact' %}
+
+<h1> Add new post</h1>
+<form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  {{form}}
+
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+{% endblock %}

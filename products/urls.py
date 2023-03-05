@@ -22,8 +22,12 @@ urlpatterns = [
     path('home', productView, name="productView"),
     path("products", lst_products, name="lst_products"),
     path('product/<int:id>', product_details, name='productDetails'),
+    # path('product/<slug:slug>', product_details, name='productDetails'),
     path("notFound/<msg>", not_found, name="not_found"),
-    path('<int:id>/delete', deleteProduct, name='delete_product')
+    path('<int:id>/delete', deleteProduct, name='delete_product'),
+    path('<int:id>/edit', edit_product, name='edit_product'),
+    path('create', create_product, name='create_product'),
+    path('search', search_by_title, name="search_results")
 
 
 
