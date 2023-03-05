@@ -26,6 +26,8 @@ def productView(request):
 def lst_products(request, db_products=[]):
     db_products = Products.get_all_products() if db_products == [] else db_products
     products_num = Products.get_products_count()
+
+    db_products = db_products.order_by("-created_at")
     return render(request, "products/products_details_view.html", context={"products": db_products, "counts": products_num})
 
 

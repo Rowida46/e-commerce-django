@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block 'title' %} Products {% endblock %}
+
+{% block 'main' %}
+
+
+<div class="container">
+    <h1> Your products landing page ... </h1>
+      <div class="row m-2  mt-3 title">
+            <h4 style="text-align:center"> <em>
+                total number of categories is  :  {{cats.count}} </em></h4>
+            </div>
+            <a class="btn btn-outline-info m-2 text-center" href="{% url 'create_cat' %}">
+                Create New Category</a>
+        
+
+    <div class="row">
+        {% for cat in cats %}
+
+        <div class="m-2 col col-3 ">
+            <div class="content">
+                <div class="card image">
+                   <img src="{{ cat.image.url}}"  class="CardImg  img-fluid" style="height: 500px;" />
+                  
+               </div> 
+               <div class="contentBx text-center">
+                   <h3 clas="card-title">{{cat.get_cat_name}}</h3>
+                  
+               </div>
+               {% comment %} <div class="text-center">
+                   <a class="btn btn-outline-secondary" href="{{prod.get_spefic_product}}">
+                       View Product</a>
+                   <a class="btn btn-outline-danger m-2" href="{{prod.get_delete_url}}">
+                           Delete Product</a>
+                   <a class="btn btn-outline-info m-2" href="{{prod.get_edit_url}}">
+                               Edit Product</a>
+               </div> {% endcomment %}
+           </div>
+        </div>
+        {% endfor %}
+
+    </div>
+</div>
+
+{% endblock %}

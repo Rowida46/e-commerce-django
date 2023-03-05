@@ -5,7 +5,7 @@
 
 
 <div class="container">
-    <h1> Your products landing page ... </h1>
+    <h1> Your products landing page based on last creation ... </h1>
  
     <div class="form-outline">
         <form action="{% url 'search_results' %}" method="get">
@@ -17,7 +17,9 @@
     
         <div class="row m-2  mt-3 title">
             <h4 style="text-align:center"> <em>
-                total number of products :  {{counts}} </em></h4>
+                total number of products :  {{counts}}
+            
+            </em></h4>
         </div>
     <a class="btn btn-outline-info m-2 text-center" href="{% url 'create_product' %}">
         Create New Product</a>
@@ -27,13 +29,18 @@
 
         <div class="m-2 col col-3 ">
 
-            <div class="card p-4">
+            <div class="card p-4"> {% comment %} <div class="card image">
+                <img class="card-img-top" src={{prod.images}} alt="Card image cap" />
+            </div> {% endcomment %}
                 <div class="content">
-                    {% comment %} <div class="card image">
-                        <img class="card-img-top" src={{prod.images}} alt="Card image cap" />
-                    </div> {% endcomment %}
+                    {{prod.created_at}}
+
+                     <div class="card image">
+                        <img src="{{ prod.image.url}}"  class="CardImg  img-fluid" style="height: 500px;" />
+                       
+                    </div> 
                     <div class="contentBx text-center">
-                        <h3 clas="card-title">{{prod.title}}</h3>
+                        <h3 clas="card-title">{{prod.slug}}</h3>
                         <p class="card-text m-2">Product Price : {{prod.price}} $</p>
                         <p class="card-text m-2"> Product Stock : {{prod.stock}}</p>
                     </div>
