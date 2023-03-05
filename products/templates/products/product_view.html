@@ -43,12 +43,15 @@
           </div>
       
           <div class="card-body m-4">
-            <h1> See other posts from the same category  </h1>
+{% comment %}             {% set number = get_host_number() | int %}
+ {% endcomment %}
+            <p class="display-6"> See more, there are {{ count }} products
+               have the same category with avrg  {{ avg_rate }} </h1>
 
            {% for cat in cats %}
 
                 {% if cat.id != prod.id %}
-                <li> <a href="{{cat.get_spefic_product}}">{{cat}} </a> </li>
+                <li> <a href="{{cat.get_spefic_product}}">{{cat}} </a> : with rate {{cat.rate}} </li>
                 {% endif %}
             {% endfor %} 
           </div>

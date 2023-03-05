@@ -3,8 +3,9 @@ from django.shortcuts import render, get_object_or_404, redirect
 
 from django.http import HttpResponse, HttpResponseNotFound
 
-from .models import Products
 from products.ProductForm import *
+from .models import Products
+from django.db.models import Avg
 
 import requests
 import json
@@ -43,16 +44,17 @@ def product_details(request, id):
 def product_details_by_slung(request, slug):
     # prod = get_object_or_404(Products, pk=id)
     prod = Products.get_spefic_product_by_slug(slug)
-    print(prod)
     return render(request, "products/product_view.html", context={"prod": prod})
 
 
 def product_details(request, id):
     prod = Products.get_product(id)
-    print(prod)
-    cats = Products.objects.filter(category=prod.category)
+    cats = Products.objects.filter(category=prod.category).order_by("-rate") # des
+    count = cats.count() - 1
+    avg = round(cats.aggregate(Avg("rate"))["rate__avg"], 2)
+    print(avg, count)
     if prod:
-        return render(request, "products/product_view.html", context={"prod": prod, "cats": cats})
+        return render(request, "products/product_view.html", context={"prod": prod, "cats": cats, "avg_rate": avg, "count": count})
     msg = "we run out of stock, your product not found "
     # return HttpResponseNotFound(<h1>product not found </h1>)
     return render(request, "not_found.html", context={"msg": msg})
@@ -106,7 +108,6 @@ def create_product(request):
 
 def edit_product(request, id):
     product = Products.get_product(id)
-    print(product)
     if request.method == 'GET':
         ProductForm = ProductModelForm(instance=product)
         return render(request, 'products/createform.html', context={'form': ProductForm})

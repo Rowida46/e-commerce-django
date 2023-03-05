@@ -21,17 +21,22 @@ class Categories(models.Model):
         return cls.objects.all()
 
     @classmethod
+    def get_counts(cls):
+        print("get_counts ",cls.count())
+        return cls.objects.all().count() -1 
+
+    @classmethod
     def get_spesific_category(cls, id):
         try:
             category = cls.objects.get(pk=id)
             print(category)
             return category
-        
+
         except Exception as e:
             return None
 
     def get_image_url(self):
-        #print("inseife ", self.image.url )
+        # print("inseife ", self.image.url )
         return f"media/{self.image}"
 
     def get_cat_name(self):
@@ -42,5 +47,3 @@ class Categories(models.Model):
 
     def get_edit_url(self):
         return reverse('', args={self.id})
-
-   
