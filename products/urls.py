@@ -27,7 +27,8 @@ urlpatterns = [
     path('<int:id>/delete', deleteProduct, name='delete_product'),
     path('<int:id>/edit', edit_product, name='edit_product'),
     path('create', create_product, name='create_product'),
-    path('search', search_by_title, name="search_results")
+    # path('search', Search_by_title.as_view(), name="search_results")
+    path("search", search_by_title, name="search_results")
 
 
 

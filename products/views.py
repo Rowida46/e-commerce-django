@@ -1,3 +1,4 @@
+from django.views import View
 from categories.models import *
 from django.shortcuts import render, get_object_or_404, redirect
 
@@ -6,6 +7,11 @@ from django.http import HttpResponse, HttpResponseNotFound
 from products.ProductForm import *
 from .models import Products
 from django.db.models import Avg
+
+# search section
+from django.db.models import Q
+from django.views import View
+
 
 import requests
 import json
@@ -51,10 +57,10 @@ def product_details_by_slung(request, slug):
 
 def product_details(request, id):
     prod = Products.get_product(id)
-    cats = Products.objects.filter(category=prod.category).order_by("-rate") # des
+    cats = Products.objects.filter(
+        category=prod.category).order_by("-rate")  # des
     count = cats.count() - 1
     avg = round(cats.aggregate(Avg("rate"))["rate__avg"], 2)
-    print(avg, count)
     if prod:
         return render(request, "products/product_view.html", context={"prod": prod, "cats": cats, "avg_rate": avg, "count": count})
     msg = "we run out of stock, your product not found "
@@ -62,9 +68,26 @@ def product_details(request, id):
     return render(request, "not_found.html", context={"msg": msg})
 
 
-def search_by_title(request, title):
-    res = Products.filter_products(title)
-    return redirect('lst_products')
+def search_by_title(request):
+    print(request.GET.get('searchProd'))
+    res = Products.filter_products(request.GET.get('searchProd'))
+    products_num = res.count()
+
+    db_products = res.order_by("-created_at")
+    return render(request, "products/products_details_view.html", context={"products": db_products, "counts": products_num})
+
+
+class Search_by_title(View):
+    model = Products
+    template_name = 'products/products_details_view.html'
+
+    def get_queryset(self):  # new
+        query = self.request.GET.get("searchProd")
+        print(query)
+        filter_res = Products.objects.filter(
+            Q(name__icontains=query) | Q(state__icontains=query)
+        )
+        return filter_res
 
 
 def index(request):

@@ -60,6 +60,7 @@ class Products(models.Model):
         except Exception as e:
             return None
 
+
     @classmethod
     def get_product(cls, id):
         try:
@@ -78,7 +79,8 @@ class Products(models.Model):
     @classmethod
     def filter_products(cls, title):
         try:
-            res = Products.objects.filter(title == title)
+            res = Products.objects.filter(slug__contains=title)
+            print(res)
             return res
         except Exception as e:
             return None
