@@ -116,3 +116,9 @@ class ModelUpdateView(UpdateView):
         return reverse('show_cat', kwargs={'pk': self.object.pk})
 
     # success_url = reverse('show_cat',  kwargs={'pk': self.object.pk})
+
+
+class CategoryDeleteView(DeleteView):
+    model = Categories
+    template_name = 'categories/delete.html'
+    success_url = "/categories/get_Categories"

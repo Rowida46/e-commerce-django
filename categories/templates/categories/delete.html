@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block 'title' %} Create Category  {% endblock %}
+
+{% block 'contact' %}
+
+<h1> Add new Category</h1>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+      <p> Are you want to delete {{category}} ? </p>
+    <button type="submit" class="btn btn-danger">Delete</button>
+  </form>
+  <a href="{% url 'get_cats'%}" class="btn btn-primary"> Cancel </a>
+  
+{% endblock %}

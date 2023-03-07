@@ -12,7 +12,9 @@ urlpatterns = [
     # path("<int:id>/edit", Edit_Category.as_view(), name="edit_cat"),
     path("<int:pk>/edit", ModelUpdateView.as_view(), name="edit_cat"),
 
-    path("<int:id>/delete", Delete_Category.as_view(), name="delete_cat"),
-    path("<int:pk>", ModelDetailView.as_view(), name="show_cat")
+    # path("<int:id>/delete", Delete_Category.as_view(), name="delete_cat"),
+    path("<int:pk>", ModelDetailView.as_view(), name="show_cat"),
+    path("<int:pk>/delete", CategoryDeleteView.as_view(), name="delete_cat")
+
 
 ]
