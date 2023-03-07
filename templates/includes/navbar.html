@@ -17,18 +17,32 @@
                 <a class="nav-item nav-link" href="{% url 'lst_products' %}">Products</a>
                 <a class="nav-item nav-link" href="{% url 'aboutUs' %}">About Us</a>
                 <a class="nav-item nav-link " href="{% url 'contactUs' %}">Contact</a>
-                <a class="nav-item nav-link " href="{% url 'get_cats' %}">Categories</a>
             </div>
             <!-- Right navigation -->
-            <!--  <div class="navbar-nav ms-lg-4">
-                <a class="nav-item nav-link" href="#">Sign in</a>
-            </div> -->
-            <!-- Action -->
-            <!--  <div class="d-flex align-items-lg-center mt-3 mt-lg-0">
-                <a href="#" class="btn btn-sm btn-primary w-full w-lg-auto">
+            {% if request.user.is_authenticated %}
+            <div class="navbar-nav ms-lg-4 text-white ">
+                {{user.username}}
+
+            </div>
+            <div class="navbar-nav ms-lg-4">
+                <a class="nav-item nav-link" href="{% url 'logout' %}">Log out</a>
+            </div>
+            {% else %}
+            <div class="navbar-nav ms-lg-4">
+                <a class="nav-item nav-link" href="{% url 'login' %}" >Log in</a>
+            </div>
+           
+            <div class="d-flex align-items-lg-center mt-3 mt-lg-0">
+                <a href="{% url 'registration' %}" class="nav-item nav-link">
                     Register
                 </a>
-            </div> -->
+            </div> 
+                 
+            {% endif %}
+
+           
+            <!-- Action -->
+             
         </div>
     </div>
 </nav>

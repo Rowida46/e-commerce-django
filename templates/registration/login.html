@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block 'title' %}login in   {% endblock %}
+
+{% block 'contact' %}
+
+<h1> Login</h1>
+<form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  {{form}}
+
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+{% endblock %}

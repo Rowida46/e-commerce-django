@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block 'title' %}Registeration {% endblock %}
+
+{% block 'contact' %}
+
+<h1>Customize your products</h1>
+<form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  {{form}}
+
+  <button type="submit" class="btn btn-primary col-4">Register</button>
+</form>
+
+{% endblock %}

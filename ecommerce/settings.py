@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'products',
     'contact',
     'djmoney',
-    'categories'
+    'categories',
+    'accounts'
 
 ]
 
