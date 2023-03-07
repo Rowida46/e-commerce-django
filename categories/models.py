@@ -22,8 +22,8 @@ class Categories(models.Model):
 
     @classmethod
     def get_counts(cls):
-        print("get_counts ",cls.count())
-        return cls.objects.all().count() -1 
+        print("get_counts ", cls.count())
+        return cls.objects.all().count() - 1
 
     @classmethod
     def get_spesific_category(cls, id):
@@ -43,7 +43,10 @@ class Categories(models.Model):
         return self.name
 
     def get_delete_url(self):
-        return reverse('', args={self.id})
+        return reverse('delete_cat', args={self.id})
 
     def get_edit_url(self):
-        return reverse('', args={self.id})
+        return reverse('edit_cat', args={self.id})
+
+    def get_details_url(self):
+        return reverse('show_cat', args={self.id})

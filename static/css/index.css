@@ -58,7 +58,8 @@ textarea {
     border: 0;
     width: 100%;
     font-size: 1rem;
-    color: white;
+    background-color: #9b9b9b;
+    color: black;
     border-radius: 4px;
 }
 

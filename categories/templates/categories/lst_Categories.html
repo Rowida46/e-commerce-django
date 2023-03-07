@@ -27,14 +27,15 @@
                    <h3 clas="card-title">{{cat.get_cat_name}}</h3>
                   
                </div>
-               {% comment %} <div class="text-center">
-                   <a class="btn btn-outline-secondary" href="{{prod.get_spefic_product}}">
-                       View Product</a>
-                   <a class="btn btn-outline-danger m-2" href="{{prod.get_delete_url}}">
-                           Delete Product</a>
-                   <a class="btn btn-outline-info m-2" href="{{prod.get_edit_url}}">
-                               Edit Product</a>
-               </div> {% endcomment %}
+               <div class="text-center">
+                <a class="btn btn-outline-danger m-2" href="{{cat.get_delete_url}}">
+                    Delete Product</a>    
+
+                <a class="btn btn-outline-secondary m-2" href="{{cat.get_details_url}}">
+                        Show Category Details</a>
+                <a class="btn btn-outline-info m-2" href="{{cat.get_edit_url}}">
+                            Edit Product</a>
+            </div>
            </div>
         </div>
         {% endfor %}
