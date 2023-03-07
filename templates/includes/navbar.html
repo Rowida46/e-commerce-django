@@ -17,6 +17,7 @@
                 <a class="nav-item nav-link" href="{% url 'lst_products' %}">Products</a>
                 <a class="nav-item nav-link" href="{% url 'aboutUs' %}">About Us</a>
                 <a class="nav-item nav-link " href="{% url 'contactUs' %}">Contact</a>
+                <a class="nav-item nav-link " href="{% url 'get_cats' %}">Categories</a>
             </div>
             <!-- Right navigation -->
             {% if request.user.is_authenticated %}

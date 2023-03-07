@@ -21,9 +21,8 @@ class ProfileView(View):
         # return HttpResponse('--- Welcome to your profile ----')
         return redirect('lst_products')
 
+
 class LogOut(View):
-
-    def get(self,request):
-        print("pppppppppppppp")
-        return redirect("home")
-
+    def get(self, request):
+        # return HttpResponse('--- Welcome to your profile ----')
+        return redirect('lst_products')

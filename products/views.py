@@ -1,9 +1,7 @@
 from django.views import View
 from categories.models import *
 from django.shortcuts import render, get_object_or_404, redirect
-
 from django.http import HttpResponse, HttpResponseNotFound
-
 from django.contrib.auth.decorators import login_required
 from products.ProductForm import *
 from .models import Products
