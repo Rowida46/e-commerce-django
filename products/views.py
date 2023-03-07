@@ -4,6 +4,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 
 from django.http import HttpResponse, HttpResponseNotFound
 
+from django.contrib.auth.decorators import login_required
 from products.ProductForm import *
 from .models import Products
 from django.db.models import Avg
@@ -108,6 +109,7 @@ def not_found(request, msg="now"):
     tmp.save() """
 
 
+@login_required()
 def deleteProduct(request, id):
     # post = Post.objects.get(id=id)
     prd = get_object_or_404(Products, pk=id)
@@ -117,6 +119,7 @@ def deleteProduct(request, id):
     return redirect('lst_products')
 
 
+@login_required()
 def create_product(request):
     if request.method == 'GET':
         newProductForm = ProductModelForm()
@@ -131,6 +134,7 @@ def create_product(request):
     return redirect("lst_products")
 
 
+@login_required()
 def edit_product(request, id):
     product = Products.get_product(id)
     if request.method == 'GET':
